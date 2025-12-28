@@ -123,6 +123,9 @@ const { cartItems, removeFromCart, clearCart, incQty, decQty, updateQty } = useC
                 <div className="product-info">
                   <h3 className="product-name">{item.name}</h3>
                   <p className="product-price">${item.price}</p>
+                  <p style={{ opacity: 0.8, marginTop: 6 }}>
+  Subtotal: ${(Number(item.price) * item.qty).toFixed(2)}
+</p>
                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
   <button className="cart-btn" onClick={() => decQty(item)} style={{ width: 44 }}>
     -
