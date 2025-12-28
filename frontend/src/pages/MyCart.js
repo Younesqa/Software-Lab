@@ -4,7 +4,7 @@ import { API } from "../services/api";
 import "../index.css";
 
 export default function MyCart({ onBack }) {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+const { cartItems, removeFromCart, clearCart, incQty, decQty, updateQty } = useCart();
 
   const [showCheckout, setShowCheckout] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("cod"); // cod | visa
@@ -123,11 +123,28 @@ export default function MyCart({ onBack }) {
                 <div className="product-info">
                   <h3 className="product-name">{item.name}</h3>
                   <p className="product-price">${item.price}</p>
-                  <span className="product-category">Qty: {item.qty}</span>
+                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
+  <button className="cart-btn" onClick={() => decQty(item)} style={{ width: 44 }}>
+    -
+  </button>
+
+  <input
+    type="number"
+    min="1"
+    value={item.qty}
+    onChange={(e) => updateQty(item, e.target.value)}
+    style={{ width: 80, textAlign: "center" }}
+  />
+
+  <button className="cart-btn" onClick={() => incQty(item)} style={{ width: 44 }}>
+    +
+  </button>
+</div>
+
 
                   <button
                     className="add-btn"
-                    onClick={() => removeFromCart(item.id ?? item.product_id ?? item._id)}
+onClick={() => removeFromCart(item)}
                   >
                     REMOVE
                   </button>
