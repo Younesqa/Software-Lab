@@ -74,13 +74,15 @@ body {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  width: auto;
+  min-width: auto;
 }
 
 .admin-header .logout-btn:hover {
@@ -138,16 +140,18 @@ body.auth-page {
   background-color: white;
   color: var(--primary-color);
   border: 2px solid white;
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: 10px 20px;
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
   letter-spacing: 0.025em;
+  min-width: auto;
+  width: auto;
 }
 
 .logout-btn:hover {
@@ -422,7 +426,7 @@ body.auth-page {
 .card {
   background: var(--bg-primary);
   width: 100%;
-  max-width: 550px;
+  max-width: 450px;
   margin: 0 auto;
   border-radius: var(--radius-xl);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -469,7 +473,7 @@ body.auth-page {
 
 .input-icon {
   position: absolute;
-  left: 1rem;
+  left: 360px;
   color: var(--text-light);
   font-size: 1.1rem;
   pointer-events: none;
@@ -704,6 +708,60 @@ button[type="submit"] {
   margin-top: var(--spacing-xl);
 }
 
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error Message */
+.error-message {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #fecaca;
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Success Message */
+.success-message {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #a7f3d0;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading Button State */
+.loading-btn {
+  opacity: 0.7 !important;
+}
+
+.loading-btn:hover {
+  transform: none !important;
+}
+
 /* ===== ADMIN DASHBOARD ===== */
 .admin-container {
   max-width: 1200px;
@@ -818,8 +876,8 @@ button[type="submit"] {
 .admin-product-thumb img{
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* قص مرتب */
-  object-position: center;/* خليه من النص */
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -856,7 +914,6 @@ button[type="submit"] {
   display:flex;
   justify-content:flex-end;
 }
-
 
 /* Image Upload Section */
 .image-upload-section {
@@ -960,6 +1017,136 @@ button[type="submit"] {
   height: 16px;
 }
 
+/* ===== CART BUTTON ===== */
+.cart-btn{
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ===== MODAL STYLES ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content{
+  width: min(900px, 95vw);
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.modal-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-image{
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img{
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-close-img{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+}
+
+.modal-close-img:hover{
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-placeholder{
+  opacity: 0.7;
+}
+
+.modal-details h2{
+  margin: 0 0 8px;
+}
+
+.modal-price{
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.modal-category{
+  opacity: 0.8;
+  margin: 0 0 10px;
+}
+
+.modal-desc{
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.modal-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Override for input, textarea, select in modals/forms */
+input, textarea, select{
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus, textarea:focus, select:focus{
+  border-color: #93c5fd;
+}
+
 /* Responsive Design for Admin */
 @media (max-width: 768px) {
   .admin-container {
@@ -991,6 +1178,10 @@ button[type="submit"] {
   .image-upload-area {
     padding: 30px 15px;
   }
+  
+  .modal-grid{ 
+    grid-template-columns: 1fr; 
+  }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -1014,6 +1205,11 @@ button[type="submit"] {
 
   .navbar h1 {
     font-size: 1.35rem;
+  }
+  
+  .logout-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
 
   .filters {
@@ -1065,8 +1261,8 @@ button[type="submit"] {
   }
 
   .logout-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.85rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 
   .product-image {
@@ -1168,139 +1364,4 @@ button[type="submit"] {
     box-shadow: none;
     border: 1px solid #000;
   }
-}
-.cart-btn{
-  border: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-input, textarea, select{
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 10px 12px;
-  outline: none;
-  font-size: 14px;
-}
-input:focus, textarea:focus, select:focus{
-  border-color: #93c5fd;
-}
-.modal-image{
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #eee;
-}
-
-/* زر الإغلاق الصغير */
-.modal-close-img{
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  padding: 0;
-}
-
-.modal-close-img:hover{
-  background: rgba(0,0,0,0.8);
-}
-
-
-.modal-content{
-  width: min(900px, 95vw);
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px;
-  position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-}
-
-.modal-close{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: none;
-  background: transparent;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.modal-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-@media (max-width: 760px){
-  .modal-grid{ grid-template-columns: 1fr; }
-}
-
-.modal-image{
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #eee;
-  min-height: 260px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-img{
-  width: 100%;
-  height: 100%;
-  max-height: 420px;
-  object-fit: cover;
-  display: block;
-}
-
-.modal-placeholder{
-  opacity: 0.7;
-}
-
-.modal-details h2{
-  margin: 0 0 8px;
-}
-
-.modal-price{
-  font-weight: 700;
-  margin: 0 0 8px;
-}
-
-.modal-category{
-  opacity: 0.8;
-  margin: 0 0 10px;
-}
-
-.modal-desc{
-  opacity: 0.9;
-  line-height: 1.6;
-  margin: 0 0 14px;
-}
-
-.modal-actions{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;   /* هذا السطر مهم */
 }
