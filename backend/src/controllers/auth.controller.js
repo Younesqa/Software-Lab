@@ -21,7 +21,7 @@ class AuthController {
         password: hashedPassword,
         role: "customer",
       });
-
+// .
       // Strategy Pattern
       const verification = new VerificationContext(
         new EmailStrategy()
