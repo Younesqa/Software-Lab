@@ -158,6 +158,27 @@ export default function Admin({ onLogout }) {
     }
   };
 
+  // ========= Delete Product =========
+  const deleteProduct = async (id) => {
+    if (!window.confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
+      return;
+    }
+
+    try {
+      await API.delete(`/products/${id}`);
+      alert("تم حذف المنتج بنجاح");
+      fetchProducts();
+      
+      // إذا كان المنتج المحذوف هو المنتج المُعدَّل حالياً، نلغي التعديل
+      if (editingId === id) {
+        resetForm();
+      }
+    } catch (err) {
+      console.log("DELETE PRODUCT ERROR:", err);
+      alert(err.response?.data?.message || "حدث خطأ أثناء حذف المنتج");
+    }
+  };
+
   // ========= Logout =========
   const logout = () => {
     localStorage.removeItem("token");
@@ -311,6 +332,16 @@ export default function Admin({ onLogout }) {
                     >
                       EDIT
                     </button>
+                    <button
+                      className="gradient-btn"
+                      onClick={() => deleteProduct(p.id)}
+                      style={{ 
+                        background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                        marginLeft: '10px'
+                      }}
+                    >
+                      DELETE
+                    </button>
                   </div>
                 </div>
               );
@@ -321,4 +352,3 @@ export default function Admin({ onLogout }) {
     </div>
   );
 }
-
