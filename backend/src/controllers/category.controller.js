@@ -1,26 +1,3 @@
-// const repo = require("../repositories/category.repository");
-// const ctrl = require("../controllers/category.controller");
-
-// exports.getAll = async (req, res) => {
-//   res.json(await repo.getAll());
-// };
-
-// exports.create = async (req, res) => {
-//   await repo.create(req.body.name);
-//   res.json({ message: "Category added" });
-// };
-
-// exports.update = async (req, res) => {
-//   await repo.update(req.params.id, req.body.name);
-//   res.json({ message: "Category updated" });
-// };
-
-// exports.delete = async (req, res) => {
-//   await repo.delete(req.params.id);
-//   res.json({ message: "Category deleted" });
-// };
-
-
 let categories = [
   { id: 1, name: "Electronics" },
   { id: 2, name: "Clothing" },
