@@ -16,7 +16,7 @@ export default function UserProfile({ onBack }) {
     <div>
       <nav className="navbar">
         <h1>My Profile</h1>
-        <button className="cart-btn" onClick={onBack}>⬅ Back</button>
+        <button className="back-btn" onClick={onBack}>⬅ Back</button>
       </nav>
 
       <div style={{ padding: 20 }}>

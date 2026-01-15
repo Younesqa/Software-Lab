@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
@@ -16,22 +16,20 @@ function App() {
   const [userView, setUserView] = useState("products");
 
   if (!logged) {
-    return showRegister ? (
-      <>
-        <Register onRegister={() => setShowRegister(false)} />
-        <p>
-          Already have an account?
-          <button onClick={() => setShowRegister(false)}>Login</button>
-        </p>
-      </>
-    ) : (
-      <>
-        <Login onLogin={() => setLogged(true)} />
-        <p>
-          Don’t have an account?
-          <button onClick={() => setShowRegister(true)}>Register</button>
-        </p>
-      </>
+    return (
+      <div className="auth-page">
+        {showRegister ? (
+          <Register 
+            onRegister={() => setShowRegister(false)} 
+            onSwitchToLogin={() => setShowRegister(false)}
+          />
+        ) : (
+          <Login 
+            onLogin={() => setLogged(true)}
+            onSwitchToRegister={() => setShowRegister(true)}
+          />
+        )}
+      </div>
     );
   }
 
