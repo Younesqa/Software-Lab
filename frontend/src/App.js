@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
